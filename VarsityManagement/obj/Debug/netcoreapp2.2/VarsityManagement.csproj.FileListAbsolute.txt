@@ -29,3 +29,4 @@ D:\CSE\Repository\Final\Final-Test\VarsityManagement\obj\Debug\netcoreapp2.2\Var
 D:\CSE\Repository\Final\Final-Test\VarsityManagement\obj\Debug\netcoreapp2.2\Razor\Views\Home\CreateCourse.cshtml.g.cs
 D:\CSE\Repository\Final\Final-Test\VarsityManagement\obj\Debug\netcoreapp2.2\Razor\Views\Home\CourseDetails.cshtml.g.cs
 D:\CSE\Repository\Final\Final-Test\VarsityManagement\obj\Debug\netcoreapp2.2\Razor\Views\Home\EditCourse.cshtml.g.cs
+D:\CSE\Repository\Final\Final-Test\VarsityManagement\obj\Debug\netcoreapp2.2\Razor\Views\Home\Create.cshtml.g.cs
