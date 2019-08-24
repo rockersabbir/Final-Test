@@ -5,10 +5,12 @@
 }
 
 <h1>All Student Details</h1>
-
+<a asp-action="Create" asp-controller="Home" class="btn btn-outline-dark"
+  >Add  Student</a>
 <div class="container">
     @foreach (var item in Model)
     {
+
         <div class="card m-3">
             <div class="card-header">
                 <span class="text-primary">ID: </span> @item.student.StudentId  <br />
@@ -22,10 +24,10 @@
                         <li>@course.Course.CourseName</li>
                     }
                 </ul>
-                <a asp-action="Create" asp-controller="Home" class="btn btn-outline-dark"
+                <a asp-action="Edit" asp-controller="Home" class="btn btn-outline-dark"
                    asp-route-studentId="@item.student.StudentId">Add or Remove Course</a>
             </div>
-           
+
         </div>
     }
 

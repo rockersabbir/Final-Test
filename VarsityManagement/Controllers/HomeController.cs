@@ -75,6 +75,22 @@ namespace VarsityManagement.Controllers
             //return View();
         }
 
+        //[HttpGet]
+        //public IActionResult Edit()
+        //{
+        //    StudentCreateViewModel model = new StudentCreateViewModel();
+        //    foreach (var course in DbContext.Courses)
+        //    {
+        //        model.courseList.Add(new SelectListItem
+        //        {
+        //            Text = course.CourseName,
+        //            Value = course.CourseId.ToString()
+        //        });
+        //    }
+
+        //    return View(model);
+        //}
+
         [HttpGet]
         public IActionResult Create()
         {
