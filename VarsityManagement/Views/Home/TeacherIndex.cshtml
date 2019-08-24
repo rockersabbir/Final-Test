@@ -1,0 +1,33 @@
+﻿@model List<VarsityManagement.ViewModels.TeacherInfoViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <h1>All Teachers Details</h1>
+<a asp-action="TeacherCreateWithCourse" asp-controller="Home" class="btn btn-outline-dark">Add  Teachers</a>
+<div class="container">
+    @foreach (var item in Model)
+    {
+
+        <div class="card m-3">
+            <div class="card-header">
+                <span class="text-primary">ID: </span> @item.Teacher.TeacherId  <br />
+                <span class="text-primary">Name: </span> @item.Teacher.TeacherName
+            </div>
+            <div class="card-body">
+                <h5>Taking Courses</h5>
+                <ul>
+                    @foreach (var course in item.Teacher.TeacherCourses)
+                    {
+                        <li>@course.Course.CourseName</li>
+                    }
+                </ul>
+                @*<a asp-action="Edit" asp-controller="Home" class="btn btn-outline-dark"
+                    asp-route-studentId="@item.student.StudentId">Add or Remove Course</a>*@
+            </div>
+
+        </div>
+    }
+
+</div>

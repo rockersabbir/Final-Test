@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using VarsityManagement.ViewModels;
 
 namespace VarsityManagement.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ApplicationDbContext DbContext { get; }
@@ -19,13 +21,74 @@ namespace VarsityManagement.Controllers
         {
             DbContext = dbContext;
         }
-       
+       //teacherCourse//////////////////////////////////////////////////////
 
         public IActionResult Privacy()
         {
             return View();
         }
+       
+        public IActionResult TeacherIndex()
+        {
 
+            List<TeacherInfoViewModel> model = new List<TeacherInfoViewModel>();
+            foreach (var std in DbContext.Teachers)
+            {
+                std.TeacherCourses = DbContext.teacherCourses
+                                         .Include(sc => sc.Course)
+                                         .Where(sc => sc.TeacherId == std.TeacherId)
+                                         .ToList();
+                model.Add(new TeacherInfoViewModel { Teacher = std });
+            }
+
+            return View(model);
+        }
+     
+
+        [HttpGet]
+        public IActionResult TeacherCreateWithCourse()
+        {
+            TeacherCreateViewModel model = new TeacherCreateViewModel();
+            foreach (var course in DbContext.Courses)
+            {
+                model.courseList.Add(new SelectListItem
+                {
+                    Text = course.CourseName,
+                    Value = course.CourseId.ToString()
+                });
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult TeacherCreateWithCourse(TeacherCreateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Teacher newTeacher = new Teacher()
+                {
+                    TeacherName = model.TeacherName,
+                };
+
+                DbContext.Teachers.Add(newTeacher);
+                DbContext.SaveChanges();
+
+                foreach (var selectedCourse in model.SelectedCourse.Where(s => s.isSelect))
+                {
+                    var teacherCourse = new TeacherCourse()
+                    {
+                        CourseId = selectedCourse.CourseId,
+                        TeacherId = newTeacher.TeacherId
+                    };
+                    DbContext.teacherCourses.Add(teacherCourse);
+                    DbContext.SaveChanges();
+                }
+                return RedirectToAction("Index");
+            }
+
+            return View(model);
+        }
 
 
         public IActionResult Index()
@@ -38,41 +101,13 @@ namespace VarsityManagement.Controllers
                                          .Include(sc => sc.Course)
                                          .Where(sc => sc.StudentId == std.StudentId)
                                          .ToList();
-
-              
-
+           
                 model.Add(new StudentInfoViewModel { student = std });
             }
 
             return View(model);
 
-            // School school = DbContext.Schools.Include(sch => sch.Students).Single(sch => sch.SchoolID == 2);
-
-            //// populate the StudentCourse table
-            //Student s = DbContext.Students.FirstOrDefault(st => st.StudentId == 2);
-            //Course c = DbContext.Courses.FirstOrDefault(cr => cr.CourseId == 2);
-
-            //StudentCourse sc1 = new StudentCourse
-            //{
-            //    Student = s,
-            //    StudentId = s.StudentId,
-            //    Course = c,
-            //    CourseId = c.CourseId
-            //};
-
-            //DbContext.studentCourses.Add(sc1);
-            //DbContext.SaveChanges();
-
-            // Retrive a student's courses
-
-            //Student s = DbContext.Students.FirstOrDefault(st => st.SchoolID == 2);
-            //s.StudentCourses = DbContext.studentCourses
-            //                   .Include(sc => sc.Course)
-            //                   .Where(sc => sc.StudentId == s.StudentId)
-            //                   .ToList();
-
-
-            //return View();
+         
         }
 
         //[HttpGet]

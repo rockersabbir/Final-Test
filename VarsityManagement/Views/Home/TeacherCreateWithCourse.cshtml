@@ -1,0 +1,39 @@
+﻿@model VarsityManagement.ViewModels.TeacherCreateViewModel
+
+<div class="container">
+    <form method="post" asp-action="TeacherCreateWithCourse" asp-controller="Home">
+        <div class="form-group row">
+            <label asp-for="TeacherName" class="col-md-2"></label>
+            <div class="col-md-10">
+                <input asp-for="TeacherName" placeholder="Name" />
+                <span asp-validation-for="TeacherName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-2">
+                Courses
+            </label>
+            <div class="col-md-10">
+                @{
+                    int i = 0;
+                    foreach (var course in Model.courseList)
+                    {
+                        <div>
+
+                            <input asp-for="@Model.SelectedCourse[i].CourseId" type="hidden" value="@course.Value" />
+                            <input asp-for="@Model.SelectedCourse[i].isSelect" />
+                            <label asp-for="@Model.SelectedCourse[i].isSelect">
+                                @course.Text
+                            </label>
+                        </div>
+                        i++;
+                    }
+                }
+            </div>
+        </div>
+        <div class="form-group row col-md-2">
+            <button type="submit" class="btn btn-outline-success">Create</button>
+        </div>
+    </form>
+</div>

@@ -30,3 +30,7 @@ D:\CSE\Repository\Final\Final-Test\VarsityManagement\obj\Debug\netcoreapp2.2\Raz
 D:\CSE\Repository\Final\Final-Test\VarsityManagement\obj\Debug\netcoreapp2.2\Razor\Views\Home\CourseDetails.cshtml.g.cs
 D:\CSE\Repository\Final\Final-Test\VarsityManagement\obj\Debug\netcoreapp2.2\Razor\Views\Home\EditCourse.cshtml.g.cs
 D:\CSE\Repository\Final\Final-Test\VarsityManagement\obj\Debug\netcoreapp2.2\Razor\Views\Home\Create.cshtml.g.cs
+D:\CSE\Repository\Final\Final-Test\VarsityManagement\obj\Debug\netcoreapp2.2\Razor\Views\Home\TeacherIndex.cshtml.g.cs
+D:\CSE\Repository\Final\Final-Test\VarsityManagement\obj\Debug\netcoreapp2.2\Razor\Views\Home\TeacherCreateWithCourse.cshtml.g.cs
+D:\CSE\Repository\Final\Final-Test\VarsityManagement\obj\Debug\netcoreapp2.2\Razor\Views\Account\Register.cshtml.g.cs
+D:\CSE\Repository\Final\Final-Test\VarsityManagement\obj\Debug\netcoreapp2.2\Razor\Views\Account\Login.cshtml.g.cs

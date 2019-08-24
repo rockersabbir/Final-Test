@@ -11,5 +11,8 @@ namespace VarsityManagement.Models
         public string CourseName { get; set; }
 
         public ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
+
+        public ICollection<TeacherCourse> TeacherCourses { get; set; } = new List<TeacherCourse>();
+
     }
 }

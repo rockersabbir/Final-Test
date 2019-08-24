@@ -10,7 +10,10 @@ namespace VarsityManagement.Models
         public int TeacherId { get; set; }
         public string TeacherName { get; set; }
 
-        public int CourseId { get; set; }
-        public Course Course { get; set; }
+        public ICollection<TeacherCourse> TeacherCourses { get; set; } = new List<TeacherCourse>();
+
+
+        //public int CourseId { get; set; }
+        //public Course Course { get; set; }
     }
 }

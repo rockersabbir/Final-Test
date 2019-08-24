@@ -32,14 +32,21 @@ namespace VarsityManagement.Models
                 .WithMany(c => c.StudentCourses)
                 .HasForeignKey(sc => sc.CourseId);
 
-            // One to many
-            //modelBuilder.Entity<Student>()
-            //    .HasKey(s => s.StudentId);
+              // Many to many
+            modelBuilder.Entity<TeacherCourse>()
+                .HasKey(sc => new { sc.TeacherId, sc.CourseId });
 
-            //modelBuilder.Entity<Student>()
-            //    .HasOne(s => s.SchoolName)
-            //    .WithMany(sch => sch.Students)
-            //    .HasForeignKey(s => s.SchoolID);
+            modelBuilder.Entity<TeacherCourse>()
+                .HasOne(sc => sc.Teacher)
+                .WithMany(s => s.TeacherCourses)
+                .HasForeignKey(sc => sc.TeacherId);
+
+            modelBuilder.Entity<TeacherCourse>()
+                .HasOne(sc => sc.Course)
+                .WithMany(c => c.TeacherCourses)
+                .HasForeignKey(sc => sc.CourseId);
+
+            
 
         }
 
@@ -48,5 +55,6 @@ namespace VarsityManagement.Models
         public DbSet<Teacher> Teachers { get; set; }
        
         public DbSet<StudentCourse> studentCourses { get; set; }
+        public DbSet<TeacherCourse> teacherCourses  { get; set; }
     }
 }
