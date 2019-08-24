@@ -1,8 +1,32 @@
-﻿@{
+﻿@model List<VarsityManagement.ViewModels.StudentInfoViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1>All Student Details</h1>
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div class="card m-3">
+            <div class="card-header">
+                <span class="text-primary">ID: </span> @item.student.StudentId  <br />
+                <span class="text-primary">Name: </span> @item.student.StudentName
+            </div>
+            <div class="card-body">
+                <h5>Enrolled Courses</h5>
+                <ul>
+                    @foreach (var course in item.student.StudentCourses)
+                    {
+                        <li>@course.Course.CourseName</li>
+                    }
+                </ul>
+                <a asp-action="Create" asp-controller="Home" class="btn btn-outline-dark"
+                   asp-route-studentId="@item.student.StudentId">Add or Remove Course</a>
+            </div>
+           
+        </div>
+    }
+
 </div>
